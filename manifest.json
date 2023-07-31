@@ -1,0 +1,24 @@
+{
+  "name": "figma-to-aphrodite",
+  "id": "",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": [
+    "codegen"
+  ],
+  "codegenLanguages": [
+    {
+      "label": "Aphrodite object",
+      "value": "javascript"
+    }
+  ],
+  "enableProposedApi": false,
+  "editorType": [
+    "dev"
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  }
+}
