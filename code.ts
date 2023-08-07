@@ -114,7 +114,7 @@ const cssObjectToCssString = (nodeName:string, cssObject:CSS): string => {
     result += `\t${camelCaseProperty}: ${quotedValue},\n`;
   }
 
-  return result + '}';
+  return result + '},';
 };
 
 const genCssStr = async (node : SceneNode ) : Promise<string> => {
