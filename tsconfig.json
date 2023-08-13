@@ -4,6 +4,7 @@
     "lib": [
       "es6"
     ],
+    "moduleResolution": "node",
     "strict": true,
     "typeRoots": [
       "./node_modules/@types",
