@@ -1,46 +1,10 @@
+//  These mappings allow us to replace Figma vars and static values with the appropriate frontend definitions
+//  Would be more powerful if this were generated dynamically... built manually for this proof of concept
+import * as mappings from './mappings.json';
+
 type CSS ={
   [key: string]: string;
 } 
-
-// TODO: Pull these out into a separate file that can be generated
-const varMappings = {
-  "--blue" : "Color.blue",
-  "--core-blue" : "Color.blue",
-  "--core-purple" : "Color.purple",
-  "--core-green" : "Color.green",
-  "--core-gold" : "Color.gold",
-  "--core-red" : "Color.red",
-  "--neutral-off-black" : "Color.offBlack",
-  "--neutral-off-black-64" : "Color.offBlack64",
-  "--neutral-off-black-50" : "Color.offBlack50",
-  "--neutral-off-black-32" : "Color.offBlack32",
-  "--neutral-off-black-16" : "Color.offBlack16",
-  "--neutral-off-black-8" : "Color.offBlack8",
-  "--neutral-off-white" : "Color.offWhite",
-  "--neutral-white" : "Color.white",
-  "--neutral-white-64" : "Color.white64",
-  "--neutral-white-50" : "Color.white50",
-  "--brand-dark-blue" : "Color.darkBlue",
-  "--brand-teal" : "Color.teal",
-  "--brand-light-blue" : "Color.lightBlue",
-  "--brand-pink" : "Color.pink",
-  "--ai" : "GuideColors.darkRed",
-  "--ai-dark-red" : "GuideColors.darkRed",
-  "--ai-off-white-30" : "GuideColors.offWhite30",
-  "--ai-off-white-15" : "GuideColors.offWhite15",
-  "--ai-peach" : "GuideColors.peach",
-  "2px" : "Spacing.xxxxSmall_2",
-  "4px" : "Spacing.xxxSmall_4",
-  "8px" : "Spacing.xSmall_8",
-  "12px" : "Spacing.small_12",
-  "16px" : "Spacing.medium_16",
-  "24px" : "Spacing.large_24",
-  "32px" : "Spacing.xLarge_32",
-  "48px" : "Spacing.xxLarge_48",
-  "64px" : "Spacing.xxxLarge_64",
-}
-
-// const kebabToCamelCase = (str: string): string => str.replace(/-([a-z])/g, (_match, char) => char.toUpperCase());
 
 const toCamelCase = (str: string) => {
   return str.replace(/[-\s]+(.)?/g, function(match, char) {
@@ -63,8 +27,8 @@ const swapVars = (str: string): string => {
     const matches = str.match(regexForVar);
     let mapped = "";
     if (matches && matches[1]){
-      let key = matches[1] as keyof typeof varMappings;
-      mapped = varMappings[key];
+      let key = matches[1] as keyof typeof mappings;
+      mapped = mappings[key];
     }
     return mapped ? "${"+mapped+"}" : str;
   });
@@ -74,9 +38,8 @@ const swapVars = (str: string): string => {
 const swapSpacingConstants = (str: string): string => {
   const regexAll = /(?:^| )([-0-9]+px)/g;
   const replaced = str.replace(regexAll, match => {
-    let key = match.trim() as keyof typeof varMappings;
-    console.log(" SSS key="+key)
-    let mapped = varMappings[key];
+    let key = match.trim() as keyof typeof mappings;
+    let mapped = mappings[key];
     return mapped ? " ${" + mapped + "}" : match;
   });
   return replaced.trim();
@@ -122,11 +85,12 @@ const genCssStr = async (node : SceneNode ) : Promise<string> => {
   return cssObjectToCssString(node.name, css);
 }
 
+//
+//  The listener that kicks it all off...
+//
 figma.codegen.on('generate', async (e : CodegenEvent) => {
   const node = e.node;
-
   const parentCss = await genCssStr(node);
-
   return  [{
     title: 'Aphrodite',
     code: parentCss,

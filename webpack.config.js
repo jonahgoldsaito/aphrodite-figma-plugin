@@ -1,9 +1,9 @@
 const { resolve } = require( 'path' )
 
 module.exports = {
-    entry: './code.ts',
+    entry: './src/plugin.ts',
     output: {
-        filename: 'prod.js',
+        filename: 'plugin.js',
         path: resolve( __dirname, 'dist' )
     },
     module: {
@@ -12,8 +12,15 @@ module.exports = {
                 test: /\.ts$/,
                 exclude: /node_module/,
                 use: 'ts-loader'
-            }]},
-        resolve: {
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader',
+                type: 'javascript/auto', // Required to handle JSON files properly
+            },
+        ]
+    },
+    resolve: {
         extensions: [ '.ts', '.js' ]
     },
     target: 'node',

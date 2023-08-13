@@ -1,18 +1,19 @@
 {
   "name": "figma-aphrodite",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Generate Aphrodite happy styles.",
-  "main": "code.js",
+  "main": "plugin.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "npm run bundleup",
     "bundleup": "webpack-cli",
     "develop": "webpack-dev-server",
-    "watch": "npm run build -- --watch"
+    "watch": "npm run bundleup -- --watch"
   },
-  "author": "",
+  "author": "Jonah Goldsaito",
   "license": "",
   "devDependencies": {
     "@figma/plugin-typings": "^1.71.1",
+    "json-loader": "^0.5.7",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
     "webpack": "^5.88.2",
