@@ -13,6 +13,7 @@
   "license": "",
   "devDependencies": {
     "@figma/plugin-typings": "^1.71.1",
+    "copy-webpack-plugin": "^11.0.0",
     "json-loader": "^0.5.7",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
