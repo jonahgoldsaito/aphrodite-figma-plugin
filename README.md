@@ -9,5 +9,5 @@ This Figma plugin was made to streamline front end styling work, with quick copy
 
 To install the plugin first enter Dev Mode, then click the Plugins tab, and finally hit the plus button. Figma will prompt you to find the manifest file at `dist/manifest.json` 
 
-`npm run bundleup`
-`npm run watch`
+- `npm run bundleup`
+- `npm run watch`
