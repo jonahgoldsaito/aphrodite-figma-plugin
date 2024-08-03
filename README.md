@@ -1,7 +1,6 @@
 ![Plugin installation](readme_assets/visual.png)
 
-# Figma Dev Mode to Aphrodite
-@jonahgoldsaito
+# Figma Dev Mode exporting to Aphrodite (styling engine)
 
 This Figma plugin was made to streamline front end styling work, with quick copy-paste for Aphrodite. It can also be customized to connect Figma variables to your own codebase's styling values (color, size, position... etc.) It functions in `Dev Mode,` replacing the default CSS output with an Aphrodite object. 
 
